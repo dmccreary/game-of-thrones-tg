@@ -10,9 +10,9 @@ edit_uri: edit/master/docs/
 nav:
   - Home: index.md
   - About: about.md
+  - Sample Data: sample-data.md
+  - Sample Queries: sample-queries.md
   - Contact: contact.md
-  - Geospatial Concepts: geospatial-concepts.md
-  - Sample Transcript: sample-transcript.md
 
 # edit_uri: 'blob/master/docs'
 theme:
