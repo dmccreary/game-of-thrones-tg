@@ -1,0 +1,48 @@
+site_name: TigerGraph Games of Thrones Demo
+site_url: https://github.com/dmccrearytg/game-of-thrones-tg
+site_description: 'Demo of Game of Thrones Social Network'
+site_author: 'Dan McCreary'
+repo_name: 'GitHub Repo'
+site_url: 'https://dmccrearytg.github.io/game-of-thrones-tg'
+repo_url: 'https://github.com/dmccrearytg/game-of-thrones-tg'
+edit_uri: edit/master/docs/
+
+nav:
+  - Home: index.md
+  - About: about.md
+  - Contact: contact.md
+  - Geospatial Concepts: geospatial-concepts.md
+  - Sample Transcript: sample-transcript.md
+
+# edit_uri: 'blob/master/docs'
+theme:
+  name: material
+  logo: img/tg-logo-small.png
+  favicon: img/favicon.ico
+  include_sidebar: true
+  features:
+    - content.code.copy
+    - navigation.expand
+    - navigation.path
+    - navigation.prune
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    # this adds the prev and next icons in the footer
+    - navigation.footer
+plugins:
+  - search
+#  - social
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      linenums: true
+# extra:
+#  analytics:
+#    provider: google
+#    # https://analytics.google.com/analytics/web/#/a1420179p349994530/admin/streams/table/4433129821
+#    property: G-BBR7MPK96Z
