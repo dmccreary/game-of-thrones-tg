@@ -31,6 +31,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://dmccrearytg.github.io/game-of-thrones-tg/sample-data/</loc>
+         <lastmod>2024-08-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dmccrearytg.github.io/game-of-thrones-tg/sample-queries/</loc>
+         <lastmod>2024-08-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/sample-transcript/</loc>
          <lastmod>2024-08-05</lastmod>
          <changefreq>daily</changefreq>
