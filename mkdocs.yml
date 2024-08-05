@@ -10,6 +10,9 @@ edit_uri: edit/master/docs/
 nav:
   - Home: index.md
   - About: about.md
+  - Data Model: data-model.md
+  - Load Data: load-data.md
+  - Explore Graph: explore-graph.md
   - Sample Data: sample-data.md
   - Sample Queries: sample-queries.md
   - Contact: contact.md
