@@ -1,8 +1,3 @@
-# Customer 360 CoPilot Demo
+# Game of Thrones Demo
 
-Resources for teaching classes on Micro Simulators using generative AI and ChatGPT.
-A test repository to test the checkin process
-
-Public mkdocs:
-
-[https://dmccrearytg.github.io/c360/](https://dmccrearytg.github.io/c360/)
+[https://dmccreary.github.io/game-of-thrones-tg/](https://dmccreary.github.io/game-of-thrones-tg/)
