@@ -2,47 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/about/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/contact/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/data-model/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/explore-graph/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dmccrearytg.github.io/game-of-thrones-tg/getting-started/</loc>
+         <lastmod>2024-08-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://dmccrearytg.github.io/game-of-thrones-tg/healthcheck/</loc>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/load-data/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/references/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/sample-data/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://dmccrearytg.github.io/game-of-thrones-tg/sample-queries/</loc>
-         <lastmod>2024-08-05</lastmod>
+         <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://dmccrearytg.github.io/game-of-thrones-tg/sample-queries/">
       
       
-        <link rel="prev" href="../sample-data/">
+        <link rel="prev" href="../explore-graph/">
       
       
         <link rel="next" href="../references/">
@@ -279,6 +279,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../sample-data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../load-data/" class="md-nav__link">
         
   
@@ -304,26 +324,6 @@
   
   <span class="md-ellipsis">
     Explore Graph
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sample-data/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Sample Data
   </span>
   
 
@@ -399,6 +399,48 @@
       Results
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-the-number-of-edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counting the Number of Edges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-all-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All People
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-the-most-popular-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting the Most Popular People
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting the Most Popular People">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outdegree-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outdegree Method
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -494,6 +536,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#counting-the-number-of-edges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counting the Number of Edges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-all-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting All People
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-the-most-popular-people" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting the Most Popular People
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Selecting the Most Popular People">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outdegree-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Outdegree Method
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -519,13 +603,188 @@
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DISTRIBUTED</span><span class="w"> </span><span class="k">QUERY</span><span class="w"> </span><span class="n">countPeople</span><span class="o">()</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">GRAPH</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="k">SYNTAX</span><span class="w"> </span><span class="n">V1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1"># The seed is all Person verticies   </span>
+<span class="w">  </span><span class="n">People</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Person</span><span class="p">.*}</span><span class="o">;</span>
+<span class="w">  </span><span class="c1"># The size operator counts the number of entry points into the graph</span>
+<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="n">People</span><span class="p">.</span><span class="n">size</span><span class="o">();</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>We can also use a SELECT clause:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
 <span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DISTRIBUTED</span><span class="w"> </span><span class="k">QUERY</span><span class="w"> </span><span class="n">countPeople</span><span class="o">()</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">GRAPH</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="k">Syntax</span><span class="w"> </span><span class="n">V2</span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Person</span><span class="p">.*}</span><span class="o">;</span>
-<span class="w">  </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">P</span><span class="o">:</span><span class="n">p</span><span class="o">;</span>
-<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="n">size</span><span class="o">();</span>
+<span class="w">  </span><span class="n">People</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Person</span><span class="p">.*}</span><span class="o">;</span>
+<span class="w">  </span><span class="n">Results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Peole</span><span class="o">:</span><span class="n">p</span><span class="o">;</span>
+<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="n">size</span><span class="o">();</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="results">Results</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>[
+  {
+    &quot;\&quot;countPeople works!\&quot;&quot;: &quot;countPeople works!&quot;
+  },
+  {
+    &quot;R.size()&quot;: 187
+  }
+]
+</code></pre></div></td></tr></table></div>
+<h2 id="counting-the-number-of-edges">Counting the Number of Edges</h2>
+<p>We can use an accumulator to count the number of edges in the graph.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DISTRIBUTED</span><span class="w"> </span><span class="k">QUERY</span><span class="w"> </span><span class="n">countEdges</span><span class="o">()</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">GRAPH</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="nb">SumAccum</span><span class="p">&lt;</span><span class="k">INT</span><span class="p">&gt;</span><span class="w"> </span><span class="nv">@@edgeCount</span><span class="o">;</span>
+
+<span class="w">  </span><span class="c1"># Get all the vertices from ANY vertex Type</span>
+<span class="w">  </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="k">ANY</span><span class="p">}</span><span class="o">;</span>
+<span class="w">  </span><span class="n">edgeCountQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span>
+<span class="w">                   </span><span class="k">FROM</span><span class="w"> </span><span class="n">start</span><span class="o">:</span><span class="n">s</span><span class="w"> </span><span class="o">-(:</span><span class="n">e</span><span class="o">)-</span><span class="w"> </span><span class="o">:</span><span class="n">d</span>
+<span class="w">                   </span><span class="k">ACCUM</span><span class="w"> </span><span class="nv">@@edgeCount</span><span class="w"> </span><span class="o">+= </span><span class="m">1</span><span class="o">;</span>
+<span class="w">  </span><span class="c1"># total edges is half since we are traversing each edge from the start to the destinaton</span>
+<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="nv">@@edgeCount</span><span class="o">/</span><span class="m">2</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>We kept a placeholder alias for the edge called <code>:e</code> and the desitination :d, but we could have left out the edge:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">edgeCountQuery</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span>
+<span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">start</span><span class="o">:</span><span class="n">s</span><span class="w"> </span><span class="o">-()- :</span><span class="n">d</span>
+<span class="w">                </span><span class="k">ACCUM</span><span class="w"> </span><span class="nv">@@edgeCount</span><span class="w"> </span><span class="o">+= </span><span class="m">1</span><span class="o">;</span>
+</code></pre></div></td></tr></table></div>
+<p>Response:</p>
+<p>Note that this works because there is only one edge type between people.</p>
+<h2 id="selecting-all-people">Selecting All People</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DISTRIBUTED</span><span class="w"> </span><span class="k">QUERY</span><span class="w"> </span><span class="n">listNames</span><span class="o">(</span><span class="cm">/* Parameters here */</span><span class="o">)</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">GRAPH</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">People</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Person</span><span class="p">.*}</span><span class="o">;</span>
+<span class="w">  </span><span class="n">Results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">People</span><span class="o">:</span><span class="n">p</span><span class="o">;</span>
+<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="n">Results</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="selecting-the-most-popular-people">Selecting the Most Popular People</h2>
+<h3 id="outdegree-method">Outdegree Method</h3>
+<p>We can use the <code>outdegree()</code> function to find the people with over 40 connections to other people.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/* main characters that have at over 40 connections */</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DISTRIBUTED</span><span class="w"> </span><span class="k">QUERY</span><span class="w"> </span><span class="n">personDegree</span><span class="o">()</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">GRAPH</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Person</span><span class="p">.*}</span><span class="o">;</span>
+<span class="w">  </span><span class="n">mainChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">s</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">start</span><span class="o">:</span><span class="n">s</span><span class="w"> </span><span class="o">-(</span><span class="n">RELATED</span><span class="o">:</span><span class="n">e</span><span class="o">)-</span><span class="w"> </span><span class="o">:</span><span class="n">t</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">outdegree</span><span class="o">()</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">40</span><span class="o">;</span>
+<span class="w">  </span><span class="k">PRINT</span><span class="w"> </span><span class="n">mainChars</span><span class="o">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>You can also add a parameter to outdegree to indicate the relationship type <code>s.outdegree(RELATED)</code>.</p>
+<p>Result:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;mainChars&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eddard-Stark&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eddard-Stark&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;v_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Eddard-Stark&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;v_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert-Baratheon&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert-Baratheon&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;v_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Robert-Baratheon&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;v_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Catelyn-Stark&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Catelyn-Stark&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;v_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Catelyn-Stark&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;v_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tyrion-Lannister&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tyrion-Lannister&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;v_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tyrion-Lannister&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;v_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Person&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<p>Expanding these nodes gives you the following:</p>
+<p><img alt="" src="../img/outdegree-4.png" /></p>
+<p>You can now see the people that connect the characters.</p>
 
 
 
@@ -561,7 +820,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../sample-data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Sample Data">
+          <a href="../explore-graph/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Explore Graph">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -571,7 +830,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Sample Data
+                Explore Graph
               </div>
             </div>
           </a>
