@@ -1,0 +1,114 @@
+CREATE GRAPH got()
+
+CREATE SCHEMA_CHANGE JOB schema_change_job_AddExportedLocalVETypes_JT8B8XV85X78MVIO FOR GRAPH got { 
+  ADD VERTEX Person(PRIMARY_ID id STRING, name STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true";
+  ADD UNDIRECTED EDGE RELATED(FROM Person, TO Person, weight UINT);
+}
+
+RUN SCHEMA_CHANGE JOB schema_change_job_AddExportedLocalVETypes_JT8B8XV85X78MVIO
+DROP JOB schema_change_job_AddExportedLocalVETypes_JT8B8XV85X78MVIO
+
+set exit_on_error = "false"
+CREATE LOADING JOB file_load_job_1a50079af2 FOR GRAPH got {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO VERTEX Person VALUES($0, $0) USING SEPARATOR=",", HEADER="true", EOL="\n";
+}
+set exit_on_error = "true"
+
+set exit_on_error = "false"
+CREATE LOADING JOB file_load_job_6fea9c6d5d FOR GRAPH got {
+      DEFINE FILENAME MyDataSource;
+      LOAD MyDataSource TO EDGE RELATED VALUES($0, $1, $3) USING SEPARATOR=",", HEADER="true", EOL="\n";
+    }
+set exit_on_error = "true"
+
+set exit_on_error = "false"
+CREATE QUERY listAllEdges() FOR GRAPH got SYNTAX v2{ 
+  People = {Person.*};
+  Results = SELECT x FROM People:x;
+  Edges = SELECT d FROM Person:p -(RELATED:e)- Person:d;
+  PRINT Results.size();
+  PRINT Edges.size();
+}
+
+CREATE DISTRIBUTED QUERY countEdges() FOR GRAPH got { 
+  SumAccum<INT> @@edgeCount;
+
+  start = {ANY};
+  edgeCountQuery = SELECT s
+                   FROM start:s -()- :t
+                   ACCUM @@edgeCount += 1;
+  # PRINT start.size();
+  # PRINT @@edgeCount;
+  PRINT @@edgeCount/2;
+}
+CREATE QUERY mainCharacters() FOR GRAPH got { 
+  start = {Person.*};
+  mainChars = 
+    SELECT s
+    FROM start:s -(RELATED:e)- :t
+    WHERE e.weight > 100;
+  PRINT mainChars;
+}
+CREATE DISTRIBUTED QUERY countPeople() FOR GRAPH got SYNTAX V1 {      
+  People = {Person.*};
+  PRINT People.size();
+}
+CREATE DISTRIBUTED QUERY personSize(/* Parameters here */) FOR GRAPH got { 
+  People = {Person.*};
+  Results = SELECT p FROM People:p;
+  PRINT Results.size();
+}
+CREATE QUERY listAllVertsAndEdges() FOR GRAPH got { 
+  ListAccum<STRING> @vertexTypeList;
+  ListAccum<STRING> @edgeTypeList;
+
+  # Fetch all vertex types
+  SELECT val FROM _v WHERE val.type = "graph_schema"
+  ACCUM @vertexTypeList += val.vertexTypes;
+
+  # Fetch all edge types
+  SELECT val FROM _v WHERE val.type = "graph_schema"
+  ACCUM @edgeTypeList += val.edgeTypes;
+
+  # Iterate through vertex types and collect vertices
+  SetAccum<STRING> @@allVertices;
+  FOREACH vertexType IN @vertexTypeList DO
+    SELECT s FROM :vertexType:s -(:vertexType:e)- :vertexType:t
+    ACCUM @@allVertices += s;
+  END;
+
+  # Iterate through edge types and collect edges
+  SetAccum<STRING> @@allEdges;
+  FOREACH edgeType IN @edgeTypeList DO
+    SELECT s - (e) - t FROM :edgeType:e -(:edgeType:e)- :edgeType:t
+    ACCUM @@allEdges += e;
+  END;
+
+  PRINT @@allVertices;
+  PRINT @@allEdges;
+}
+CREATE QUERY listNames(/* Parameters here */) FOR GRAPH got SYNTAX v2 {
+  People = {Person.*};
+  Vertices = SELECT p FROM People:p;
+  Relationships = SELECT p FROM Person:p -(RELATED:e)- Person:p;
+  PRINT Vertices.size();
+  PRINT Relationships.size();
+  PRINT Vertices;
+  PRINT Relationships;
+}
+CREATE QUERY countPeople2(/* Parameters here */) FOR GRAPH got Syntax V2 { 
+  People = {Person.*};
+  Results = SELECT p FROM People:p;
+  PRINT Results.size();
+}
+
+CREATE QUERY personDegree() FOR GRAPH got { 
+  start = {Person.*};
+  mainChars = 
+    SELECT s
+    FROM start:s -(RELATED:e)- :t
+    WHERE s.outdegree() > 40;
+  PRINT mainChars;
+}
+set exit_on_error = "true"
