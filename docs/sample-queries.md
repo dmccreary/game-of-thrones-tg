@@ -146,3 +146,28 @@ Expanding these nodes gives you the following:
 ![](./img/outdegree-4.png)
 
 You can now see the people that connect the characters.
+
+## Returning All Edges
+
+By default, we usually only return the vertices in a query result and then click on the vertices to see the structure.
+However, we can also return the edges directly to the output using accumulators.
+
+```gsql
+CREATE QUERY returnAllEdges() FOR GRAPH got {
+  SetAccum<EDGE> @@edges;
+  
+  // Assuming the vertices are of type Person and edges are of type RELATED
+  start = {Person.*};
+  result = SELECT s
+           FROM start:s - (RELATED:e) -> Person:t
+           ACCUM @@edges += e;
+
+  PRINT @@edges;
+}
+```
+
+This will display all the edges directly into the output window.
+
+The Radial view will show the following:
+
+~[](./img/radial-view.png)
