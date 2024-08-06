@@ -389,6 +389,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../license.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../contact/" class="md-nav__link">
         
   
@@ -439,7 +459,9 @@
 
 
 <h1 id="customer-360-data-model">Customer 360 Data Model</h1>
-<p>Our data model is just a single vertex type called <code>Person</code> with a <code>RELATED</code> edge to itself (reflexive).</p>
+<p>Our data model is just a single vertex type called <code>Person</code> with a <code>RELATED</code> edge to itself (reflexive).
+The Person has a single STRING attribute called <code>name</code> and the edge has an unsigned integer called <code>weight</code>
+that represents the number of times the two characters were mentioned within 15 words of each other.</p>
 <p><img alt="" src="../img/data-model.png" /></p>
 <p><img alt="" src="../img/related-edge.png" /></p>
 
